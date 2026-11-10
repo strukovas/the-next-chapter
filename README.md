@@ -8,13 +8,9 @@ Players match text excerpts to event categories, predict the next recorded event
 
 Open `index.html` in a browser. No installation, build, or account is required.
 
-## Publish with GitHub Pages
-
-In the repository, open **Settings → Pages**, choose **Deploy from a branch**, and select **main** and **/(root)**. GitHub will provide the shareable website URL.
-
 ## About the examples
 
-The matching task contains three selected study excerpts and their category labels. The prediction task uses recorded category sequences and saved Sequence Transformer predictions. These are selected teaching examples, not a representative evaluation of model accuracy.
+The matching task contains three selected study excerpts and their category labels. The prediction task uses recorded category sequences and saved Sequence Transformer predictions. These are selected teaching examples.
 
 The final task contains synthetic text written for the game. It is not patient testimony or output from the narrative-generation model. No prediction model runs inside this website.
 
