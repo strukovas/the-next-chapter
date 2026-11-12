@@ -165,7 +165,7 @@ function openNotebook(){
 function finish(){
  if(!state.done.every(Boolean)||!state.playing)return;state.playing=false;activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;$('play-screen').hidden=true;$('end-screen').hidden=false;
  react('celebrate');$('end-score').textContent=state.points;
- $('end-findings').replaceChildren();$('end-findings').append(element('p','selection-note',`These examples were selected to show two correct model predictions and one error. Across all ${STUDY_EXAMPLES.savedRun.total} histories in this saved run, the Sequence Transformer matched the first hidden event ${STUDY_EXAMPLES.savedRun.matches} times. The selected examples do not measure overall accuracy.`));FINDINGS.forEach(([title,text])=>{const item=element('div','finding');item.append(element('strong','',title),element('span','',text));$('end-findings').append(item);});$('restart').focus();
+ $('end-findings').replaceChildren();FINDINGS.forEach(([title,text])=>{const item=element('div','finding');item.append(element('strong','',title),element('span','',text));$('end-findings').append(item);});$('restart').focus();
 }
 function start(){state=newState();activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;$('title-screen').hidden=true;$('end-screen').hidden=true;$('play-screen').hidden=false;renderProgress();react('neutral');openTerminal(0);}
 $('start').addEventListener('click',start);$('restart').addEventListener('click',start);$('notebook-button').addEventListener('click',openNotebook);$('close-modal').addEventListener('click',closeModal);
