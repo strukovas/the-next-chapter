@@ -65,3 +65,5 @@
 @media(max-width:600px){.story-option.wrong,.story-option.wrong:hover{padding:13px}}
 
 .takeaways-title{max-width:580px;margin:32px auto 12px;text-align:left;font-size:26px;line-height:1.2}
+
+.results-card h1{color:#71518b}
