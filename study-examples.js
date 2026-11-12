@@ -36,7 +36,7 @@ const STUDY_EXAMPLES = {
       {
         "text": "I experienced symptoms and relapses and changed my daily routine. Two weeks later, I returned to full-time work and took a holiday.",
         "correct": false,
-        "reason": "The time interval, return to full-time work, and holiday are not in the predicted categories. Future outlook is also omitted."
+        "reason": ""
       }
     ],
     "textOrigin": "Synthetic options written for this game, not patient quotations or outputs from the narrative-generation model."
