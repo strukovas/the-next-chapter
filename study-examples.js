@@ -18,25 +18,44 @@ const STUDY_EXAMPLES = {
     "caseNumber": 94,
     "method": "Sequence Transformer",
     "events": [
-      "Symptoms & Relapses",
-      "Impact and/or changes in daily life due to multiple sclerosis",
-      "Future, Future Anxiety, Future Outlook"
+      "Multiple sclerosis diagnosis",
+      "Disease Modifying Treatment & Side Effects",
+      "Hospital, Rehab, Hospitalization"
     ],
+    "eventsOrigin": "Observed event categories from the selected recorded sequence.",
     "options": [
       {
-        "text": "I thought about what the future might hold. Later, I experienced symptoms and relapses, which affected my daily life.",
+        "text": "I started treatment, then received my diagnosis. Later, I spent time in hospital or rehabilitation.",
         "correct": false,
-        "reason": "The order changes: future outlook appears before symptoms and daily-life impact."
+        "reason": "The diagnosis comes before treatment in the events above."
       },
       {
-        "text": "I experienced symptoms and relapses. These affected my daily life. I reflected on what the future might hold.",
+        "text": "I received my diagnosis, started treatment, and later spent time in hospital or rehabilitation.",
         "correct": true,
         "reason": ""
       },
       {
-        "text": "I experienced symptoms and relapses and changed my daily routine. Two weeks later, I returned to full-time work and took a holiday.",
+        "text": "I received my diagnosis and started treatment. Later, I changed my working hours.",
         "correct": false,
+        "reason": "The last event is hospital or rehabilitation, rather than a change at work."
+      }
+    ],
+    "nextEvent": "Symptoms & Relapses",
+    "nextOptions": [
+      {
+        "text": "I experienced symptoms and relapses.",
+        "correct": true,
         "reason": ""
+      },
+      {
+        "text": "I changed my medication and dealt with its side effects.",
+        "correct": false,
+        "reason": "This text describes treatment, rather than symptoms and relapses."
+      },
+      {
+        "text": "I adjusted my working hours and changed how I organised my work.",
+        "correct": false,
+        "reason": "This text describes a change at work, rather than symptoms and relapses."
       }
     ],
     "textOrigin": "Synthetic options written for this game, not patient quotations or outputs from the narrative-generation model."

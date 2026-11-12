@@ -1,7 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id);
 const LABEL={symptoms:'Symptoms & Relapses',diagnosis:'Multiple sclerosis diagnosis',work:'Work, Work Adjustment, Termination/Resignation',support:'Engaging with or becoming a member of (nonprofit) support organizations (e.g., the Swiss Multiple Sclerosis Society)',fatigue:'Tiredness, Exhaustion, Fatigue',mental:'Mental Distress: Depression, Anxiety, Loneliness, Difficulty Coping',tests:'Neurologist contacts, Diagnostic Procedures (MRI, Lumbar Puncture, etc.)',relationships:'Interpersonal Relationships (Family, Partner, Friends)',treatment:'Disease Modifying Treatment & Side Effects',leisure:'Leisure, Hobbies, and Sports (Engaging, Giving Up, or Adapting)',future:'Future, Future Anxiety, Future Outlook',positive:'Mental Health: Self-Confidence, Trust, Hope, Relief, Contentment',hospital:'Hospital, Rehab, Hospitalization',daily:'Impact and/or changes in daily life due to multiple sclerosis'};
-const TASKS=['Decode','Predict','Tell the story'];
+const TASKS=['Decode','Predict','Match and continue'];
 const FINDINGS=[['Language → events','Category labels structure a story, while leaving some detail behind.'],['Prediction → evidence','The next event may be different from what we expect.'],['Events → narrative','A synthetic continuation should preserve the predicted categories and their order.']];
 const DECODE=STUDY_EXAMPLES.decode;
 const ROUNDS=STUDY_EXAMPLES.rounds;
@@ -11,7 +11,7 @@ function shuffled(items){const result=[...items];for(let i=result.length-1;i>0;i
 function newState(){
  const sentences=shuffled(DECODE.map((_,i)=>i)),categories=shuffled(DECODE.map((_,i)=>i));
  if(categories.every((value,i)=>value===sentences[i]))categories.push(categories.shift());
- return {points:0,done:[false,false,false],matched:[],selectedCard:null,round:0,prediction:{choice:null,revealed:false},predictions:[],storySolved:false,storyTried:[],playing:true,mood:'neutral',sentenceOrder:sentences,decodeOrder:categories,predictionOrders:ROUNDS.map(r=>shuffled(r.choices.map((_,i)=>i))),storyOrder:shuffled(CONTINUATION.options.map((_,i)=>i)),justMatched:null};
+ return {points:0,done:[false,false,false],matched:[],selectedCard:null,round:0,prediction:{choice:null,revealed:false},predictions:[],storyMatched:false,storySolved:false,storyTried:[],storyNextTried:[],playing:true,mood:'neutral',sentenceOrder:sentences,decodeOrder:categories,predictionOrders:ROUNDS.map(r=>shuffled(r.choices.map((_,i)=>i))),storyOrder:shuffled(CONTINUATION.options.map((_,i)=>i)),storyNextOrder:shuffled(CONTINUATION.nextOptions.map((_,i)=>i)),justMatched:null};
 }
 function motionAllowed(){return !globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;}
 function react(mood){
@@ -72,7 +72,7 @@ function renderProgress(){
  $('results-button').hidden=completed!==3;
 }
 function openModal(kind,title,kicker){
- updatePoints();lastFocus=document.activeElement;activePuzzle=kind;renderTaskTrack();$('modal').hidden=false;document.body.style.overflow='hidden';$('play-screen').inert=true;$('modal-title').textContent=title;$('modal-kicker').textContent=kicker;$('puzzle').replaceChildren();$('puzzle-feedback').textContent='';$('puzzle-done').hidden=true;$('puzzle-done').textContent='Back to tasks →';$('modal-title').focus({preventScroll:true});$('modal').scrollTop=0;$('task-panel').scrollTop=0;
+ updatePoints();$('task-panel').classList.toggle('story-panel',kind===2);lastFocus=document.activeElement;activePuzzle=kind;renderTaskTrack();$('modal').hidden=false;document.body.style.overflow='hidden';$('play-screen').inert=true;$('modal-title').textContent=title;$('modal-kicker').textContent=kicker;$('puzzle').replaceChildren();$('puzzle-feedback').textContent='';$('puzzle-done').hidden=true;$('puzzle-done').textContent='Back to tasks →';$('modal-title').focus({preventScroll:true});$('modal').scrollTop=0;$('task-panel').scrollTop=0;
 }
 function closeModal(){if(activePuzzle===null)return;activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;renderProgress();if(lastFocus&&lastFocus.isConnected&&typeof lastFocus.focus==='function')lastFocus.focus();else $('level-'+Math.max(0,currentMission())).focus();}
 function instruction(text){$('puzzle').append(element('p','puzzle-instruction',text));}
@@ -82,7 +82,7 @@ function openTerminal(index){
  if(activePuzzle!==null)return;
  if(state.done[index]){openModal('review',TASKS[index]+' complete','TASK COMPLETE');instruction(FINDINGS[index][1]);if(index===0)appendClassifierInvite();$('puzzle-done').hidden=false;return;}
  if(!isUnlocked(index))return;
- openModal(index, ['Reconnect the fragments.','Predict the next event.','Which continuation fits?'][index],`TASK ${index+1} / ${TASKS[index].toUpperCase()}`);
+ openModal(index, ['Reconnect the fragments.','Predict the next event.','Match the story, then find what follows.'][index],`TASK ${index+1} / ${TASKS[index].toUpperCase()}`);
  [renderDecode,renderPredict,renderStory][index]();
 }
 function appendClassifierInvite(){
@@ -137,26 +137,48 @@ function renderPredictionReveal(){
 }
 function renderStory(){
  $('puzzle').replaceChildren();
- instruction('Choose the text that preserves all three predicted categories in order. Correct choice: +4; wrong choice: −1.');
-
- const heading=element('p','history-heading','PREDICTED EVENTS IN ORDER');
- const trail=element('ol','continuation-events');CONTINUATION.events.forEach(label=>trail.append(element('li','',label)));
- $('puzzle').append(heading,trail,element('p','synthetic-label','SYNTHETIC TEXT OPTIONS: Written for this game, not patient quotations or outputs from the narrative-generation model.'));
- const options=element('div','story-options');
- state.storyOrder.forEach((i,position)=>{const option=CONTINUATION.options[i];
-  const tried=state.storyTried.includes(i);const card=button('',()=>{
-   if(state.storySolved||state.storyTried.includes(i))return;
-   state.storyTried.push(i);
-   if(option.correct){state.storySolved=true;awardPoints(4,card);react('happy');completeMission(2);renderStory();feedback('+4 points. A synthetic continuation should preserve the predicted categories and their order.');}
-   else{awardPoints(-1,card);react('thinking');renderStory();feedback('−1 point. Try another continuation.');}
-  },'card story-option '+(tried?(option.correct?'matched':'wrong'):''));
-  card.setAttribute('data-story-index',String(i));card.setAttribute('aria-disabled',String(state.storySolved||tried));
-  card.append(element('span','option-letter',String.fromCharCode(65+position)),element('span','continuation-text',option.text));
-  if(tried&&option.reason)card.append(element('small','option-reason',option.reason));
-  options.append(card);
- });
- $('puzzle').append(options);
+ instruction('Match the text to the events so far, then choose the continuation. Each match: +2; wrong choice: −1.');
+ $('puzzle').append(element('p','history-heading','EVENTS SO FAR, IN ORDER'));
+ const trail=element('ol','story-event-trail');CONTINUATION.events.forEach(label=>trail.append(element('li','',label)));
+ const next=element('li','next-chapter-marker');next.append(element('strong','',state.storyMatched?'Next chapter':'Next chapter?'),element('small','','Predicted category + matching text'));trail.append(next);$('puzzle').append(trail);
+ const columns=element('div','story-workspace');
+ const left=element('section','story-match-column');left.setAttribute('aria-labelledby','story-match-title');
+ left.append(element('p','story-step','1 / LOOK BACK'));const leftTitle=element('h3','','Which text matches?');leftTitle.id='story-match-title';
+ left.append(leftTitle,element('p','story-column-hint','Choose the text that matches the events above in order.'));
+ left.append(storyChoices(CONTINUATION.options,state.storyOrder,state.storyTried,state.storyMatched,false));
+ const middle=element('section','story-prediction-column');middle.setAttribute('aria-labelledby','story-prediction-title');
+ middle.append(element('p','story-step','2 / LOOK AHEAD'));const middleTitle=element('h3','','The next category');middleTitle.id='story-prediction-title';
+ middle.append(middleTitle,element('p','story-column-hint',state.storyMatched?'Use this prediction for the text on the right.':'Match the text on the left to reveal it.'));
+ const forecast=element('div','story-next-category '+(state.storyMatched?'revealed':''));forecast.append(element('small','','PREDICTED NEXT EVENT'),element('strong','',state.storyMatched?CONTINUATION.nextEvent:'?'));middle.append(forecast);
+ const arrow=element('div','story-forward-arrow','→');arrow.setAttribute('aria-hidden','true');middle.append(arrow,element('p','story-model-label',CONTINUATION.method+' prediction'));
+ const right=element('section','story-continuation-column');right.setAttribute('aria-labelledby','story-next-title');
+ right.append(element('p','story-step','3 / CONTINUE'));const rightTitle=element('h3','','Which text comes next?');rightTitle.id='story-next-title';
+ right.append(rightTitle,element('p','story-column-hint',state.storyMatched?'Match the text to the predicted category.':'Unlock these choices by matching the text on the left.'));
+ right.append(storyChoices(CONTINUATION.nextOptions,state.storyNextOrder,state.storyNextTried,state.storySolved,true));
+ columns.append(left,middle,right);$('puzzle').append(columns,element('p','story-text-note','Text options written for this game, based on recorded categories and a model prediction.'));
  if(state.storySolved)$('puzzle-done').hidden=false;
+}
+function storyChoices(options,order,tried,solved,isNext){
+ const list=element('div','story-options');
+ order.forEach((i,position)=>{
+  const option=options[i],attempted=tried.includes(i),locked=isNext&&!state.storyMatched;
+  const card=button('',()=>{
+   if(locked||solved||tried.includes(i))return;
+   tried.push(i);
+   if(option.correct){
+    if(isNext){state.storySolved=true;awardPoints(2,card);react('happy');completeMission(2);}
+    else{state.storyMatched=true;awardPoints(2,card);react('happy');}
+    renderStory();feedback(isNext?'+2 points. A synthetic continuation should preserve the predicted categories and their order.':'+2 points. Now match the continuation to the predicted category.');
+   }else{awardPoints(-1,card);react('thinking');renderStory();feedback('−1 point. Try another text.');}
+   const focus=$('puzzle').querySelector(`[data-story-${isNext?'next-':''}index="${i}"]`);focus?.focus({preventScroll:true});
+  },'card story-option '+(attempted?(option.correct?'matched':'wrong'):''));
+  card.setAttribute(isNext?'data-story-next-index':'data-story-index',String(i));card.setAttribute('aria-disabled',String(locked||solved||attempted));
+  if(locked)card.disabled=true;
+  card.append(element('span','option-letter',String.fromCharCode(65+position)),element('span','continuation-text',option.text));
+  if(attempted&&option.reason)card.append(element('small','option-reason',option.reason));
+  list.append(card);
+ });
+ return list;
 }
 function openNotebook(){
  if(!state?.playing||activePuzzle!==null)return;openModal('notebook','Your findings','RESEARCH NOTES');

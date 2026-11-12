@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Three short puzzles about patient stories and prediction.">
 <title>The Next Chapter: Three research puzzles</title><link rel="icon" type="image/svg+xml" href="duck-icon.svg?v=20261112-23">
-<link rel="stylesheet" href="game.css?v=20261112-29">
+<link rel="stylesheet" href="game.css?v=20261112-30">
 </head>
 <body>
 <header><a class="wordmark" href="index.html">THE NEXT CHAPTER<span>THREE RESEARCH PUZZLES</span></a><a class="study-link" href="study.html" target="_blank" rel="noopener">About the study ↗</a></header>
@@ -13,7 +13,7 @@
 <div class="title-play">
 <p class="overline">A game about patient stories</p><h1>The Next Chapter</h1>
 <p class="intro-copy">Match a story. Predict what follows.<br>Choose the story that fits.</p>
-<div class="title-stages" aria-hidden="true"><span>1 <b>Decode</b></span><i>→</i><span>2 <b>Predict</b></span><i>→</i><span>3 <b>Tell the story</b></span></div>
+<div class="title-stages" aria-hidden="true"><span>1 <b>Decode</b></span><i>→</i><span>2 <b>Predict</b></span><i>→</i><span>3 <b>Match and continue</b></span></div>
 <button id="start" class="button bright">Play →</button>
 <p class="demo-note">Based on research into multiple sclerosis narratives.<br>Recorded excerpts and saved model predictions.<br>Examples selected for teaching.</p>
 </div>
@@ -25,7 +25,7 @@
 <ol class="level-list">
 <li><button id="level-0" class="level-button"><span class="level-number">1</span><span class="level-copy"><strong>Decode</strong><small>Connect sentences to their event categories.</small></span><span id="level-state-0" class="level-state">Play →</span></button></li>
 <li><button id="level-1" class="level-button" disabled><span class="level-number">2</span><span class="level-copy"><strong>Predict</strong><small>Choose the next event and reveal the recorded answer.</small></span><span id="level-state-1" class="level-state">Locked</span></button></li>
-<li><button id="level-2" class="level-button" disabled><span class="level-number">3</span><span class="level-copy"><strong>Tell the story</strong><small>Choose a continuation that follows the predicted events.</small></span><span id="level-state-2" class="level-state">Locked</span></button></li>
+<li><button id="level-2" class="level-button" disabled><span class="level-number">3</span><span class="level-copy"><strong>Match and continue</strong><small>Match text to the recorded events, then choose what follows.</small></span><span id="level-state-2" class="level-state">Locked</span></button></li>
 </ol>
 <button id="results-button" class="button bright" hidden>See your results →</button>
 <p class="demo-note">Your progress stays here when you close a task.</p>
@@ -35,6 +35,6 @@
 <div id="modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title"><div id="task-panel" class="modal-window"><div class="modal-top" id="task-toolbar"><span id="modal-kicker" class="overline"></span><span class="task-total" role="status" aria-live="polite" aria-atomic="true"><img src="duck.svg?v=20261112-6" alt="Your duck avatar" width="40" height="40"><span class="task-player-info"><span>Total points <strong id="task-points">0</strong></span><span id="task-badges" class="player-badges" aria-label="Task badges"></span></span></span><button id="close-modal" class="close" aria-label="Back to tasks">×</button></div><nav id="task-progress" class="task-progress" aria-label="Task progression"></nav><h2 id="modal-title" tabindex="-1"></h2><div id="puzzle"></div><p id="puzzle-feedback" class="puzzle-feedback" role="status" aria-live="polite"></p><button id="puzzle-done" class="button bright" hidden>Back to tasks →</button></div></div>
 <div id="reward-layer" aria-hidden="true"></div>
 <noscript><p class="noscript">Enable JavaScript to play. <a href="study.html">Read about the research.</a></p></noscript>
-<script src="study-examples.js?v=20261112-21"></script>
-<script src="game.js?v=20261112-22"></script>
+<script src="study-examples.js?v=20261112-30"></script>
+<script src="game.js?v=20261112-30"></script>
 </body></html>
