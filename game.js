@@ -7,20 +7,7 @@ const DECODE=STUDY_EXAMPLES.decode;
 const ROUNDS=STUDY_EXAMPLES.rounds;
 const CONTINUATION=STUDY_EXAMPLES.continuation;
 let state,activePuzzle=null,lastFocus=null;
-const BEST_KEY='next-chapter-personal-best-v3';
-let bestRecord=readBest(),storageWorks=true;
 function shuffled(items){const result=[...items];for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}return result;}
-function readBest(){try{const record=JSON.parse(globalThis.localStorage?.getItem(BEST_KEY)||'null');return record&&Number.isInteger(record.best)&&record.best<=16&&Number.isInteger(record.plays)&&record.plays>0?record:null;}catch{return null;}}
-function saveBest(){
- const previous=bestRecord?.best;const best=previous===undefined?state.points:Math.max(previous,state.points);
- bestRecord={best,plays:(bestRecord?.plays||0)+1};
- try{if(!globalThis.localStorage)throw Error('Storage unavailable');globalThis.localStorage.setItem(BEST_KEY,JSON.stringify(bestRecord));}catch{storageWorks=false;}
- $('end-best').textContent=best;
- $('best-status').textContent=previous===undefined?'Your first completed round.':state.points>previous?'New personal best!':state.points===previous?'You matched your personal best.':`Your best is ${best} points. Try another round.`;
- if(!storageWorks)$('best-status').textContent+=' Best kept for this tab; browser storage is unavailable.';
- showTitleBest();
-}
-function showTitleBest(){const label=$('title-best');label.hidden=!bestRecord;if(bestRecord)label.textContent=`Your personal best: ${bestRecord.best} points`;}
 function newState(){
  const sentences=shuffled(DECODE.map((_,i)=>i)),categories=shuffled(DECODE.map((_,i)=>i));
  if(categories.every((value,i)=>value===sentences[i]))categories.push(categories.shift());
@@ -177,8 +164,8 @@ function openNotebook(){
 }
 function finish(){
  if(!state.done.every(Boolean)||!state.playing)return;state.playing=false;activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;$('play-screen').hidden=true;$('end-screen').hidden=false;
- saveBest();react('celebrate');$('end-score').textContent=state.points;
- const matches=state.predictions.filter(p=>p.correct).length;$('end-summary').textContent=`${state.points} points. ${matches} / 3 predictions matched the recorded next events.`;
+ react('celebrate');$('end-score').textContent=state.points;
+ const matches=state.predictions.filter(p=>p.correct).length;$('end-summary').textContent=`Task 2: You correctly predicted ${matches} of ${ROUNDS.length} next events.`;
  $('end-findings').replaceChildren();$('end-findings').append(element('p','selection-note',`These examples were selected to show two correct model predictions and one error. Across all ${STUDY_EXAMPLES.savedRun.total} histories in this saved run, the Sequence Transformer matched the first hidden event ${STUDY_EXAMPLES.savedRun.matches} times. The selected examples do not measure overall accuracy.`));FINDINGS.forEach(([title,text])=>{const item=element('div','finding');item.append(element('strong','',title),element('span','',text));$('end-findings').append(item);});$('restart').focus();
 }
 function start(){state=newState();activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;$('title-screen').hidden=true;$('end-screen').hidden=true;$('play-screen').hidden=false;renderProgress();react('neutral');openTerminal(0);}
@@ -189,5 +176,3 @@ TASKS.forEach((name,i)=>$('level-'+i).addEventListener('click',()=>{if(state?.pl
 document.addEventListener('keydown',event=>{
  if(activePuzzle!==null){if(event.key==='Escape'){event.preventDefault();closeModal();return;}if(event.key==='Tab'){const focusable=[...$('modal').querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter(el=>!el.hidden);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&(document.activeElement===first||document.activeElement===$('modal-title'))){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}return;}
 });
-
-showTitleBest();
