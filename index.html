@@ -12,7 +12,7 @@
 <section id="title-screen" class="title-screen">
 <p class="overline">A game about patient stories</p><h1>The Next Chapter</h1>
 <p class="intro-copy">Match a story. Predict what follows.<br>Choose the story that fits.</p>
-<div class="title-stages" aria-hidden="true"><span>01 <b>Decode</b></span><i>→</i><span>02 <b>Predict</b></span><i>→</i><span>03 <b>Tell the story</b></span></div>
+<div class="title-stages" aria-hidden="true"><span>1 <b>Decode</b></span><i>→</i><span>2 <b>Predict</b></span><i>→</i><span>3 <b>Tell the story</b></span></div>
 <p class="title-best" id="title-best" hidden></p><button id="start" class="button bright">Play →</button>
 <p class="demo-note">Based on research into multiple sclerosis narratives.<br>Recorded excerpts and saved model predictions.<br>Examples selected for teaching.</p>
 </section>
@@ -20,9 +20,9 @@
 <div class="hud"><div class="player-profile"><img src="researcher.svg" alt="Your researcher avatar" width="52" height="52"><div><span class="tiny">YOU</span><span id="player-badges" class="player-badges" aria-label="Task badges"></span></div></div><div><span class="tiny">COMPLETED</span><strong id="restored">0 / 3</strong></div><div><span class="tiny">POINTS</span><strong id="points">0</strong></div><button id="notebook-button" class="chip">Findings <span id="finding-count">0 / 3</span></button></div>
 <div class="level-heading"><h2>Three puzzles. One story.</h2><p>Complete each task to unlock the next.</p></div>
 <ol class="level-list">
-<li><button id="level-0" class="level-button"><span class="level-number">01</span><span class="level-copy"><strong>Decode</strong><small>Connect sentences to their event categories.</small></span><span id="level-state-0" class="level-state">Play →</span></button></li>
-<li><button id="level-1" class="level-button" disabled><span class="level-number">02</span><span class="level-copy"><strong>Predict</strong><small>Choose the next event and reveal the recorded answer.</small></span><span id="level-state-1" class="level-state">Locked</span></button></li>
-<li><button id="level-2" class="level-button" disabled><span class="level-number">03</span><span class="level-copy"><strong>Tell the story</strong><small>Choose a continuation that follows the predicted events.</small></span><span id="level-state-2" class="level-state">Locked</span></button></li>
+<li><button id="level-0" class="level-button"><span class="level-number">1</span><span class="level-copy"><strong>Decode</strong><small>Connect sentences to their event categories.</small></span><span id="level-state-0" class="level-state">Play →</span></button></li>
+<li><button id="level-1" class="level-button" disabled><span class="level-number">2</span><span class="level-copy"><strong>Predict</strong><small>Choose the next event and reveal the recorded answer.</small></span><span id="level-state-1" class="level-state">Locked</span></button></li>
+<li><button id="level-2" class="level-button" disabled><span class="level-number">3</span><span class="level-copy"><strong>Tell the story</strong><small>Choose a continuation that follows the predicted events.</small></span><span id="level-state-2" class="level-state">Locked</span></button></li>
 </ol>
 <button id="results-button" class="button bright" hidden>See your results →</button>
 <p class="demo-note">Your progress stays here when you close a task.</p>
@@ -33,5 +33,5 @@
 <div id="reward-layer" aria-hidden="true"></div>
 <noscript><p class="noscript">Enable JavaScript to play. <a href="study.html">Read about the research.</a></p></noscript>
 <script src="study-examples.js"></script>
-<script src="game.js?v=20261112-2"></script>
+<script src="game.js?v=20261112-3"></script>
 </body></html>

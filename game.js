@@ -95,7 +95,7 @@ function openTerminal(index){
  if(activePuzzle!==null)return;
  if(state.done[index]){openModal('review',TASKS[index]+' complete','TASK COMPLETE');instruction(FINDINGS[index][1]);if(index===0)appendClassifierInvite();$('puzzle-done').hidden=false;return;}
  if(!isUnlocked(index))return;
- openModal(index, ['Reconnect the fragments.','Predict the next event.','Which continuation fits?'][index],`TASK 0${index+1} / ${TASKS[index].toUpperCase()}`);
+ openModal(index, ['Reconnect the fragments.','Predict the next event.','Which continuation fits?'][index],`TASK ${index+1} / ${TASKS[index].toUpperCase()}`);
  [renderDecode,renderPredict,renderStory][index]();
 }
 function appendClassifierInvite(){
@@ -145,7 +145,7 @@ function renderPredictionReveal(){
  $('puzzle').append(button(state.round<ROUNDS.length-1?`Try example ${state.round+2} of ${ROUNDS.length} →`:'Finish Task 2 →',()=>{
  if(!state.prediction.revealed)return;
  if(state.round<2){$('modal').scrollTop=0;$('task-panel').scrollTop=0;state.round++;state.prediction={choice:null,revealed:false};feedback('');renderPredict();}
- else{completeMission(1);$('puzzle').replaceChildren();$('modal-title').textContent='Prediction task complete.';instruction('Finding unlocked: plausibility needs evidence. The final task, Tell the story, is now open.');feedback('Task 02 complete.');}
+ else{completeMission(1);$('puzzle').replaceChildren();$('modal-title').textContent='Prediction task complete.';feedback('Task 2 complete.');}
  },'button bright'));
 }
 function renderStory(){
