@@ -33,3 +33,14 @@
 
 /* Keep prediction examples inside the Predict stage, not across all three tasks. */
 .task-progress>ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}.task-progress>ol>li{display:block;min-width:0}.task-progress>ol>li:after{display:none}.task-track-main{display:flex;align-items:center;gap:8px;min-height:24px}.task-progress>ol>li:not(:last-child)>.task-track-main:after{content:"";height:1px;flex:1;background:var(--line);margin-left:6px}.task-progress .example-track{display:flex;flex-direction:column;align-items:stretch;gap:12px;margin:12px 0 0 11px;padding:4px 0 4px 18px;border-left:2px solid #d0dac7;border-radius:0;background:transparent}.task-progress .example-step{flex:none;align-items:center;gap:8px}.task-progress .example-step:after{display:none}.example-label{line-height:1.3}.example-label small{margin-top:1px}@media(max-width:600px){.task-progress>ol{gap:10px}.task-track-main{gap:5px;font-size:10px}.task-progress .example-track{margin-left:10px;padding-left:10px;gap:10px}.task-progress .example-step{gap:5px}.example-label{font-size:10px}}
+
+/* Use one typeface and distinguish category cards from story fragments. */
+.match-grid .card{font-size:16px;line-height:1.5;font-weight:400}
+.match-grid .card .quote{font-family:inherit;font-size:inherit;line-height:inherit;font-weight:inherit}
+.match-grid>.card-column:first-child .card:not(.matched){background:#eaf2fb;border-color:#bbd1e7}
+.match-grid>.card-column:last-child .card:not(.matched){background:#fff1e5;border-color:#e7cbb2}
+.match-grid>.card-column .card.selected{background:#dcebe2;border-color:var(--mint)}
+.match-grid .card.matched.match-0{background:#e8f3f8;border-color:#1b7190}
+.match-grid .card.matched.match-1{background:#f9eaf0;border-color:#a24669}
+.match-grid .card.matched.match-2{background:#f1ebf8;border-color:#8450aa}
+@media(max-width:600px){.match-grid .card{font-size:14px}.match-grid .card .quote{font-size:inherit}}
