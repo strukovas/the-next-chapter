@@ -96,6 +96,7 @@ function renderDecode(){
  const previousPositions=matchPositions();$('puzzle').replaceChildren();instruction('Match a category with its corresponding sentence. Match: +2; wrong pair: −1.');
  const headings=element('div','match-headings');headings.append(element('span','','CATEGORY CARDS'),element('span','','STORY FRAGMENTS'));$('puzzle').append(headings);
  const grid=element('div','puzzle-grid match-grid'),left=element('div','card-column'),right=element('div','card-column');
+ left.append(element('h3','mobile-match-heading','Category cards'));right.append(element('h3','mobile-match-heading','Story fragments'));
  const order=[...state.decodeOrder];state.matched.forEach(i=>{const row=state.sentenceOrder.indexOf(i),old=order.indexOf(i);[order[row],order[old]]=[order[old],order[row]];});
  const arrows=element('div','match-links');arrows.setAttribute('aria-hidden','true');
  state.sentenceOrder.forEach(i=>{const row=element('div','match-link '+(state.matched.includes(i)?'connected match-'+i:''));row.setAttribute('data-link-id',String(i));row.append(element('span','connection-line'));arrows.append(row);});
@@ -148,12 +149,12 @@ function renderStory(){
  left.append(storyChoices(CONTINUATION.options,state.storyOrder,state.storyTried,state.storyMatched,false));
  const middle=element('section','story-prediction-column');middle.setAttribute('aria-labelledby','story-prediction-title');
  middle.append(element('p','story-step','2 / LOOK AHEAD'));const middleTitle=element('h3','','The next category');middleTitle.id='story-prediction-title';
- middle.append(middleTitle,element('p','story-column-hint',state.storyMatched?'Use this prediction for the text on the right.':'Match the text on the left to reveal it.'));
+ middle.append(middleTitle,element('p','story-column-hint',state.storyMatched?'Use this prediction to choose the matching continuation.':'Match the text to reveal the next category.'));
  const forecast=element('div','story-next-category '+(state.storyMatched?'revealed':''));forecast.append(element('small','','PREDICTED NEXT EVENT'),element('strong','',state.storyMatched?CONTINUATION.nextEvent:'?'));middle.append(forecast);
  const arrow=element('div','story-forward-arrow','→');arrow.setAttribute('aria-hidden','true');middle.append(arrow,element('p','story-model-label',CONTINUATION.method+' prediction'));
  const right=element('section','story-continuation-column');right.setAttribute('aria-labelledby','story-next-title');
  right.append(element('p','story-step','3 / CONTINUE'));const rightTitle=element('h3','','Which text comes next?');rightTitle.id='story-next-title';
- right.append(rightTitle,element('p','story-column-hint',state.storyMatched?'Match the text to the predicted category.':'Unlock these choices by matching the text on the left.'));
+ right.append(rightTitle,element('p','story-column-hint',state.storyMatched?'Match the text to the predicted category.':'Unlock these choices by matching the text to the events so far.'));
  right.append(storyChoices(CONTINUATION.nextOptions,state.storyNextOrder,state.storyNextTried,state.storySolved,true));
  columns.append(left,middle,right);$('puzzle').append(columns);
  if(state.storySolved)$('puzzle-done').hidden=false;

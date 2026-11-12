@@ -132,3 +132,17 @@ header{padding-top:18px;padding-bottom:18px}
 @media(max-width:1000px){.story-workspace{grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr);gap:16px}.story-prediction-column{padding:0 12px}.story-workspace h3{font-size:18px}}
 @media(max-width:800px){.story-workspace{grid-template-columns:1fr;gap:26px}.story-prediction-column{padding:20px 0 0;border:0;border-top:1px solid var(--line)}.story-event-trail{grid-template-columns:1fr 1fr}.story-column-hint{min-height:0}.story-next-category{padding:14px}.story-next-category strong{margin-top:6px}.story-forward-arrow{transform:rotate(90deg);margin:4px 0}.story-model-label{margin-bottom:0}.story-workspace .story-option{font-size:15px}}
 @media(max-width:420px){.story-event-trail{grid-template-columns:1fr}.story-event-trail li{font-size:14px;padding:9px 12px}}
+
+/* Full-width matching choices on phones; desktop retains paired columns. */
+.mobile-match-heading{display:none}
+@media(max-width:600px){
+ .match-headings{display:none}
+ .match-grid{display:block}
+ .match-grid .match-links{display:none}
+ .match-grid .card-column{display:flex;flex-direction:column;gap:10px}
+ .match-grid .card-column+.card-column,.match-grid .match-links+.card-column{margin-top:26px}
+ .match-grid .mobile-match-heading{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:20px 0 2px;line-height:1.4}
+ .match-grid .card{width:100%;height:auto;min-height:58px;padding:14px;font-size:15px;line-height:1.55;overflow-wrap:break-word}
+ .match-grid .card.selected{padding:13px}
+ .match-grid .quote{font-size:15px;line-height:1.55}
+}
