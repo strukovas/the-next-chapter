@@ -30,7 +30,7 @@ function motionAllowed(){return !globalThis.matchMedia?.('(prefers-reduced-motio
 function react(mood){
  state.mood=mood;
  document.querySelectorAll('img[alt="Your duck avatar"]').forEach(img=>{
-  img.setAttribute('src',mood==='neutral'?'duck.svg':`duck-${mood}.svg`);
+  img.setAttribute('src',mood==='neutral'?'duck.svg?v=20261112-6':`duck-${mood}.svg?v=20261112-6`);
   if(motionAllowed())img.animate?.([{transform:'translateY(0)'},{transform:mood==='celebrate'?'translateY(-7px) rotate(-5deg)':'translateY(-3px)'},{transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
  });
 }
