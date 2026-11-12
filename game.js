@@ -128,7 +128,7 @@ function renderPredictionReveal(){
  $('puzzle').append(element('p','prediction-outcome',p.choice===r.actual?'Your prediction matched the recorded event.':'Your prediction did not match the recorded event.'));
  $('puzzle').append(element('p','history-heading','NEXT RECORDED EVENT'),element('h3','recorded-event',r.next));const results=element('div','reveal-grid prediction-comparison');
  [['Your prediction',r.choices[p.choice]],['Recorded event',r.choices[r.actual]],[r.method+' prediction (saved)',r.choices[r.computer]]].forEach(([label,value],index)=>{const correct=index===0?p.choice===r.actual:index===2?r.computer===r.actual:null;const box=element('div',index===0?(correct?'answer-correct':'answer-incorrect'):'');box.append(element('small','',label),element('strong','',value));if(correct!==null)box.append(element('span','result-status '+(correct?'status-correct':'status-incorrect'),correct?'✓ Correct':'× Incorrect'));results.append(box);});$('puzzle').append(results);
- instruction(state.round===0?'One matching event is only a start, so researchers check predictions across many patient journeys.':'A plausible prediction can differ from the event actually recorded.');
+ instruction(state.round===0?'One matching event is only a start, so researchers check predictions across many patient journeys.':'The next event may be different from what we expect.');
  $('puzzle').append(button(state.round<ROUNDS.length-1?`Try example ${state.round+2} of ${ROUNDS.length} →`:'Finish Task 2 →',()=>{
  if(!state.prediction.revealed)return;
  if(state.round<2){$('modal').scrollTop=0;$('task-panel').scrollTop=0;state.round++;state.prediction={choice:null,revealed:false};feedback('');renderPredict();}
