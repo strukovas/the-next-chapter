@@ -67,3 +67,22 @@
 .takeaways-title{max-width:580px;margin:32px auto 12px;text-align:left;font-size:26px;line-height:1.2}
 
 .results-card h1{color:#71518b}
+
+/* Opening screen: instructions on the left, title and play on the right. */
+main:has(>.title-screen:not([hidden])){max-width:1100px}
+.title-screen{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;margin:42px auto 32px;text-align:left}
+.how-to-play{padding:24px 50px 24px 10px}
+.how-to-play h2{font-size:32px;margin:0 0 32px}
+.play-guide{list-style:none;margin:0;padding:0;display:grid;gap:28px}
+.play-guide li{display:flex;gap:18px;align-items:flex-start}
+.guide-number{font-size:16px;font-weight:700;line-height:30px;color:var(--mint);flex:0 0 20px}
+.play-guide h3{font-size:20px;line-height:1.5;margin:0 0 3px;font-weight:650}
+.play-guide p{font-size:15px;line-height:1.6;color:var(--muted);margin:0;max-width:340px}
+.guide-points{font-size:13px;color:var(--muted);margin:28px 0 0 38px}
+.title-play{border-left:1px solid var(--line);padding:24px 10px 24px 42px;text-align:center}
+.title-play h1{font-size:clamp(42px,4.7vw,62px);margin:20px 0 24px}
+.title-play .intro-copy{font-size:18px;line-height:1.6}
+.title-play .title-stages{gap:16px;margin:30px 0}
+.title-play .title-stages b{font-size:15px}
+.title-play .demo-note{margin-bottom:0}
+@media(max-width:760px){.title-screen{grid-template-columns:1fr;margin:20px auto 30px;gap:28px}.how-to-play{padding:14px 6px}.how-to-play h2{font-size:27px;margin-bottom:22px}.play-guide{gap:20px}.play-guide p{max-width:none}.title-play{border-left:0;border-top:1px solid var(--line);padding:30px 6px 10px}.title-play h1{font-size:48px}.title-play .title-stages{gap:18px}.title-play .intro-copy{font-size:18px}}

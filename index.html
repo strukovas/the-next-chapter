@@ -4,17 +4,20 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Three short puzzles about patient stories and prediction.">
 <title>The Next Chapter: Three research puzzles</title><link rel="icon" type="image/svg+xml" href="duck-icon.svg?v=20261112-23">
-<link rel="stylesheet" href="game.css?v=20261112-13">
+<link rel="stylesheet" href="game.css?v=20261112-24">
 </head>
 <body>
 <header><a class="wordmark" href="index.html">THE NEXT CHAPTER<span>THREE RESEARCH PUZZLES</span></a><a class="study-link" href="study.html" target="_blank" rel="noopener">About the study ↗</a></header>
 <main>
 <section id="title-screen" class="title-screen">
+<div class="how-to-play" aria-labelledby="how-to-title"><h2 id="how-to-title">How to play</h2><ol class="play-guide"><li><span class="guide-number">1</span><div><h3>Match</h3><p>Pair each sentence with an event category.</p></div></li><li><span class="guide-number">2</span><div><h3>Predict</h3><p>Guess what comes next. Compare your answer with the recorded event and the computer’s prediction.</p></div></li><li><span class="guide-number">3</span><div><h3>Choose</h3><p>Pick the story that follows the predicted events.</p></div></li></ol><p class="guide-points">Earn points as you go.</p></div>
+<div class="title-play">
 <p class="overline">A game about patient stories</p><h1>The Next Chapter</h1>
 <p class="intro-copy">Match a story. Predict what follows.<br>Choose the story that fits.</p>
 <div class="title-stages" aria-hidden="true"><span>1 <b>Decode</b></span><i>→</i><span>2 <b>Predict</b></span><i>→</i><span>3 <b>Tell the story</b></span></div>
 <button id="start" class="button bright">Play →</button>
 <p class="demo-note">Based on research into multiple sclerosis narratives.<br>Recorded excerpts and saved model predictions.<br>Examples selected for teaching.</p>
+</div>
 </section>
 <section id="play-screen" hidden aria-label="Three research puzzles">
 <div class="hud"><div class="player-profile"><img src="duck.svg?v=20261112-6" alt="Your duck avatar" width="52" height="52"><div><span class="tiny">YOU</span><span id="player-badges" class="player-badges" aria-label="Task badges"></span></div></div><div><span class="tiny">COMPLETED</span><strong id="restored">0 / 3</strong></div><div><span class="tiny">POINTS</span><strong id="points">0</strong></div><button id="notebook-button" class="chip">Findings <span id="finding-count">0 / 3</span></button></div>
