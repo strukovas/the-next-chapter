@@ -147,7 +147,7 @@ function renderStory(){
   const tried=state.storyTried.includes(i);const card=button('',()=>{
    if(state.storySolved||state.storyTried.includes(i))return;
    state.storyTried.push(i);
-   if(option.correct){state.storySolved=true;awardPoints(4,card);react('happy');completeMission(2);renderStory();feedback('+4 points. A synthetic continuation should preserve the predicted categories and their order.');}
+   if(option.correct){state.storySolved=true;awardPoints(4,card);react('happy');completeMission(2);renderStory();feedback('+4 points.');}
    else{awardPoints(-1,card);react('thinking');renderStory();feedback('−1 point. Try another continuation.');}
   },'card story-option '+(tried?(option.correct?'matched':'wrong'):''));
   card.setAttribute('data-story-index',String(i));card.setAttribute('aria-disabled',String(state.storySolved||tried));
