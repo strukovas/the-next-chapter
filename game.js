@@ -104,7 +104,7 @@ function renderDecode(){
  if(state.matched.includes(i))return;if(state.selectedCard===null){feedback('Choose a category card first.');return;}
  if(state.selectedCard!==i){awardPoints(-1,slot);react('thinking');state.selectedCard=null;renderDecode();feedback('That connection does not fit. −1 point. Try another pairing.');return;}
  state.matched.push(i);state.justMatched=i;state.selectedCard=null;awardPoints(2,slot);react('happy');renderDecode();feedback(`+2 points. ${state.matched.length} / 3 connections restored.`);
- if(state.matched.length===3){completeMission(0);feedback('All three matched. Try the classifier, or continue to Predict.');}
+ if(state.matched.length===3){completeMission(0);feedback('Category labels structure a story, while leaving some detail behind.');}
  },'card slot '+(state.matched.includes(i)?'matched match-'+i:''));slot.setAttribute('aria-disabled',String(state.matched.includes(i)));slot.append(element('span','quote',data.text));if(state.matched.includes(i))slot.setAttribute('aria-label',data.text+'. Matched to '+DECODE[i].label);right.append(slot);});
  grid.append(left,arrows,right);$('puzzle').append(grid);if(state.matched.length===DECODE.length)appendClassifierInvite();animateMatches(previousPositions);
 }
