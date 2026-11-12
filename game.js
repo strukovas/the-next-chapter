@@ -150,8 +150,7 @@ function renderPredictionReveal(){
 }
 function renderStory(){
  $('puzzle').replaceChildren();
- instruction('Choose the text that preserves all three predicted categories in order');
- instruction('Correct choice: +4; wrong choice: −1.');
+ instruction('Choose the text that preserves all three predicted categories in order. Correct choice: +4; wrong choice: −1.');
 
  const heading=element('p','history-heading','PREDICTED EVENTS IN ORDER');
  const trail=element('ol','continuation-events');CONTINUATION.events.forEach(label=>trail.append(element('li','',label)));

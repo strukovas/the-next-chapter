@@ -31,7 +31,7 @@ const STUDY_EXAMPLES = {
       {
         "text": "I experienced symptoms and relapses. These affected my daily life. I reflected on what the future might hold.",
         "correct": true,
-        "reason": "All three categories appear in the predicted order, without specific events being added."
+        "reason": ""
       },
       {
         "text": "I experienced symptoms and relapses and changed my daily routine. Two weeks later, I returned to full-time work and took a holiday.",
