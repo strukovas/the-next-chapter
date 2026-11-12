@@ -44,3 +44,14 @@
 .match-grid .card.matched.match-1{background:#f9eaf0;border-color:#a24669}
 .match-grid .card.matched.match-2{background:#f1ebf8;border-color:#8450aa}
 @media(max-width:600px){.match-grid .card{font-size:14px}.match-grid .card .quote{font-size:inherit}}
+
+/* Carry the category/text distinction through prediction and continuation tasks. */
+.observed-events span:not(.unknown-event),.continuation-events li{background:#eaf2fb;border:1px solid #bbd1e7;color:var(--ink);font:400 16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.continuation-events{padding-left:0;gap:12px;list-style-position:inside}
+.continuation-events li{border-radius:6px;padding:12px 14px;min-width:160px}
+.routes .card,.story-option{background:#fff1e5;border-color:#e7cbb2;font-family:inherit;font-size:16px;font-weight:400;line-height:1.5}
+.routes .card.selected{background:#dcebe2;border-color:var(--mint)}
+.routes .card:hover:not([aria-disabled="true"]),.story-option:hover:not([aria-disabled="true"]){background:#fce5d2;border-color:#c69b79}
+.story-option.matched,.story-option.matched:hover{background:#edf4e8;border-color:var(--mint)}
+.story-option.wrong,.story-option.wrong:hover{background:#fae9e8;border-color:#b27c77}
+@media(max-width:600px){.observed-events span:not(.unknown-event),.continuation-events li,.routes .card,.story-option{font-size:14px}.continuation-events li{margin-bottom:8px;padding:10px 12px}}

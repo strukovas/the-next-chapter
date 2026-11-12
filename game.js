@@ -151,10 +151,10 @@ function renderPredictionReveal(){
 function renderStory(){
  $('puzzle').replaceChildren();
  instruction('Choose the text that preserves all three predicted categories, in order, without adding facts. Correct choice: +4; wrong choice: −1.');
- const note=element('p','source-caption',`Predicted sequence from recorded example ${String(CONTINUATION.caseNumber).padStart(3,'0')}. Saved ${CONTINUATION.method} output. These are predictions, not known future events.`);
+
  const heading=element('p','history-heading','PREDICTED EVENTS IN ORDER');
  const trail=element('ol','continuation-events');CONTINUATION.events.forEach(label=>trail.append(element('li','',label)));
- $('puzzle').append(note,heading,trail,element('p','synthetic-label','SYNTHETIC TEXT OPTIONS: Written for this game, not patient quotations or outputs from the narrative-generation model.'));
+ $('puzzle').append(heading,trail,element('p','synthetic-label','SYNTHETIC TEXT OPTIONS: Written for this game, not patient quotations or outputs from the narrative-generation model.'));
  const options=element('div','story-options');
  state.storyOrder.forEach((i,position)=>{const option=CONTINUATION.options[i];
   const tried=state.storyTried.includes(i);const card=button('',()=>{
