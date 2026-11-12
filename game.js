@@ -155,7 +155,7 @@ function renderStory(){
  right.append(element('p','story-step','3 / CONTINUE'));const rightTitle=element('h3','','Which text comes next?');rightTitle.id='story-next-title';
  right.append(rightTitle,element('p','story-column-hint',state.storyMatched?'Match the text to the predicted category.':'Unlock these choices by matching the text on the left.'));
  right.append(storyChoices(CONTINUATION.nextOptions,state.storyNextOrder,state.storyNextTried,state.storySolved,true));
- columns.append(left,middle,right);$('puzzle').append(columns,element('p','story-text-note','Text options written for this game, based on recorded categories and a model prediction.'));
+ columns.append(left,middle,right);$('puzzle').append(columns);
  if(state.storySolved)$('puzzle-done').hidden=false;
 }
 function storyChoices(options,order,tried,solved,isNext){
