@@ -86,3 +86,5 @@ main:has(>.title-screen:not([hidden])){max-width:1100px}
 .title-play .title-stages b{font-size:15px}
 .title-play .demo-note{margin-bottom:0}
 @media(max-width:760px){.title-screen{grid-template-columns:1fr;margin:20px auto 30px;gap:28px}.how-to-play{padding:14px 6px}.how-to-play h2{font-size:27px;margin-bottom:22px}.play-guide{gap:20px}.play-guide p{max-width:none}.title-play{border-left:0;border-top:1px solid var(--line);padding:30px 6px 10px}.title-play h1{font-size:48px}.title-play .title-stages{gap:18px}.title-play .intro-copy{font-size:18px}}
+
+.how-to-play>.overline{margin:0 0 14px}.how-to-play .mission-lead{font-size:20px;line-height:1.5;margin:0 0 22px}.how-to-play .mission-copy{font-size:16px;line-height:1.65;color:var(--muted);margin:0 0 18px}.how-to-play .mission-copy:last-child{margin-bottom:0}
