@@ -3,15 +3,15 @@ const STUDY_EXAMPLES = {
   "decode": [
     {
       "text": "The diagnostic confirmation changed almost everything.",
-      "label": "MS Diagnosis"
+      "label": "Multiple sclerosis diagnosis"
     },
     {
       "text": "Reducing my workload gave me more time for my well-being.",
       "label": "Work, Work Adjustment, Termination/Resignation"
     },
     {
-      "text": "Through a close acquaintance who also has MS, I join the MS regional group.",
-      "label": "Engaging with or becoming a member of (nonprofit) support organizations (e.g., the Swiss MS Society)"
+      "text": "Through a close acquaintance who also has multiple sclerosis, I join the multiple sclerosis regional group.",
+      "label": "Engaging with or becoming a member of (nonprofit) support organizations (e.g., the Swiss Multiple Sclerosis Society)"
     }
   ],
   "continuation": {
@@ -19,7 +19,7 @@ const STUDY_EXAMPLES = {
     "method": "Sequence Transformer",
     "events": [
       "Symptoms & Relapses",
-      "Impact and/or changes in daily life due to MS",
+      "Impact and/or changes in daily life due to multiple sclerosis",
       "Future, Future Anxiety, Future Outlook"
     ],
     "options": [
@@ -45,7 +45,7 @@ const STUDY_EXAMPLES = {
     {
       "caseNumber": 94,
       "history": [
-        "MS Diagnosis",
+        "Multiple sclerosis diagnosis",
         "Disease Modifying Treatment & Side Effects",
         "Hospital, Rehab, Hospitalization"
       ],
@@ -69,11 +69,11 @@ const STUDY_EXAMPLES = {
       "choices": [
         "Disease Modifying Treatment & Side Effects",
         "Mental Distress: Depression, Anxiety, Loneliness, Difficulty Coping",
-        "MS Diagnosis"
+        "Multiple sclerosis diagnosis"
       ],
       "actual": 2,
       "computer": 2,
-      "next": "MS Diagnosis",
+      "next": "Multiple sclerosis diagnosis",
       "method": "Sequence Transformer"
     },
     {
