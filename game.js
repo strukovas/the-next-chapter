@@ -29,8 +29,8 @@ function newState(){
 function motionAllowed(){return !globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;}
 function react(mood){
  state.mood=mood;
- document.querySelectorAll('img[alt="Your researcher avatar"]').forEach(img=>{
-  img.setAttribute('src',mood==='neutral'?'researcher.svg':`researcher-${mood}.svg`);
+ document.querySelectorAll('img[alt="Your duck avatar"]').forEach(img=>{
+  img.setAttribute('src',mood==='neutral'?'duck.svg':`duck-${mood}.svg`);
   if(motionAllowed())img.animate?.([{transform:'translateY(0)'},{transform:mood==='celebrate'?'translateY(-7px) rotate(-5deg)':'translateY(-3px)'},{transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
  });
 }
