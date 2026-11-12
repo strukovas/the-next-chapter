@@ -148,7 +148,7 @@ function renderStory(){
    if(state.storySolved||state.storyTried.includes(i))return;
    state.storyTried.push(i);
    if(option.correct){state.storySolved=true;awardPoints(4,card);react('happy');completeMission(2);renderStory();feedback('+4 points. All three tasks complete. A faithful story can still describe a forecast that turns out to be wrong.');}
-   else{awardPoints(-1,card);react('thinking');renderStory();feedback(['−1 point.',option.reason,'Try another continuation.'].filter(Boolean).join(' '));}
+   else{awardPoints(-1,card);react('thinking');renderStory();feedback('−1 point. Try another continuation.');}
   },'card story-option '+(tried?(option.correct?'matched':'wrong'):''));
   card.setAttribute('data-story-index',String(i));card.setAttribute('aria-disabled',String(state.storySolved||tried));
   card.append(element('span','option-letter',String.fromCharCode(65+position)),element('span','continuation-text',option.text));
