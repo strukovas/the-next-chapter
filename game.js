@@ -2,7 +2,7 @@
 const $=id=>document.getElementById(id);
 const LABEL={symptoms:'Symptoms & Relapses',diagnosis:'MS Diagnosis',work:'Work, Work Adjustment, Termination/Resignation',support:'Engaging with or becoming a member of (nonprofit) support organizations (e.g., the Swiss MS Society)',fatigue:'Tiredness, Exhaustion, Fatigue',mental:'Mental Distress: Depression, Anxiety, Loneliness, Difficulty Coping',tests:'Neurologist contacts, Diagnostic Procedures (MRI, Lumbar Puncture, etc.)',relationships:'Interpersonal Relationships (Family, Partner, Friends)',treatment:'Disease Modifying Treatment & Side Effects',leisure:'Leisure, Hobbies, and Sports (Engaging, Giving Up, or Adapting)',future:'Future, Future Anxiety, Future Outlook',positive:'Mental Health: Self-Confidence, Trust, Hope, Relief, Contentment',hospital:'Hospital, Rehab, Hospitalization',daily:'Impact and/or changes in daily life due to MS'};
 const TASKS=['Decode','Predict','Tell the story'];
-const FINDINGS=[['Language → events','Category labels structure a story, while leaving some detail behind.'],['Prediction → evidence','A plausible continuation can differ from the event that was recorded.'],['Events → narrative','A synthetic continuation should preserve the predicted categories and their order. Fluency does not make a forecast true.']];
+const FINDINGS=[['Language → events','Category labels structure a story, while leaving some detail behind.'],['Prediction → evidence','A plausible continuation can differ from the event that was recorded.'],['Events → narrative','A synthetic continuation should preserve the predicted categories and their order.']];
 const DECODE=STUDY_EXAMPLES.decode;
 const ROUNDS=STUDY_EXAMPLES.rounds;
 const CONTINUATION=STUDY_EXAMPLES.continuation;

@@ -63,3 +63,5 @@
 .result-status{display:block;margin-top:12px;font-size:13px;font-weight:700}.status-correct{color:#22603a}.status-incorrect,.puzzle-feedback.feedback-negative{color:#a33343}
 .story-option.wrong,.story-option.wrong:hover{background:#fce7e7;border:2px solid #b54f59;padding:17px}
 @media(max-width:600px){.story-option.wrong,.story-option.wrong:hover{padding:13px}}
+
+.takeaways-title{max-width:580px;margin:32px auto 12px;text-align:left;font-size:26px;line-height:1.2}
