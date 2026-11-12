@@ -101,3 +101,5 @@ header{padding-top:18px;padding-bottom:18px}
 .title-play{padding-top:16px;padding-bottom:16px}
 .how-to-play{padding-top:16px;padding-bottom:16px}
 @media(max-width:760px){header{padding:16px 18px}.study-link{font-size:13px;padding:9px 12px}.title-screen{margin-top:10px;gap:20px}.title-play{padding-top:8px;padding-bottom:24px}.how-to-play{padding-top:10px;padding-bottom:10px}}
+
+@media(min-width:761px){.title-screen{margin:0 auto;min-height:calc(100svh - 130px)}.how-to-play .mission-copy{font-size:17px}.how-to-play .mission-lead{font-size:19px}}
