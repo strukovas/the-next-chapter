@@ -55,3 +55,11 @@
 .story-option.matched,.story-option.matched:hover{background:#edf4e8;border-color:var(--mint)}
 .story-option.wrong,.story-option.wrong:hover{background:#fae9e8;border-color:#b27c77}
 @media(max-width:600px){.observed-events span:not(.unknown-event),.continuation-events li,.routes .card,.story-option{font-size:14px}.continuation-events li{margin-bottom:8px;padding:10px 12px}}
+
+/* Selection is neutral; scored answers explicitly show both outcomes. */
+.routes .card.selected{background:#deebf9;border-color:#3b6f9d}
+.prediction-comparison>div.answer-correct{background:#e7f3e5;border-color:#51885c}
+.prediction-comparison>div.answer-incorrect{background:#fce7e7;border-color:#b54f59}
+.result-status{display:block;margin-top:12px;font-size:13px;font-weight:700}.status-correct{color:#22603a}.status-incorrect,.puzzle-feedback.feedback-negative{color:#a33343}
+.story-option.wrong,.story-option.wrong:hover{background:#fce7e7;border:2px solid #b54f59;padding:17px}
+@media(max-width:600px){.story-option.wrong,.story-option.wrong:hover{padding:13px}}

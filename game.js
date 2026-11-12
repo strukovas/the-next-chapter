@@ -89,7 +89,7 @@ function openModal(kind,title,kicker){
 }
 function closeModal(){if(activePuzzle===null)return;activePuzzle=null;$('modal').hidden=true;document.body.style.overflow='';$('play-screen').inert=false;renderProgress();if(lastFocus&&lastFocus.isConnected&&typeof lastFocus.focus==='function')lastFocus.focus();else $('level-'+Math.max(0,currentMission())).focus();}
 function instruction(text){$('puzzle').append(element('p','puzzle-instruction',text));}
-function feedback(text){$('puzzle-feedback').textContent=text;updatePoints();}
+function feedback(text){$('puzzle-feedback').textContent=text;$('puzzle-feedback').classList.toggle('feedback-negative',/^[−-]/.test(text));updatePoints();}
 function completeMission(index){if(state.done[index])return;state.done[index]=true;renderProgress();react('celebrate');$('puzzle-done').textContent=index<2?'Continue to '+TASKS[index+1]+' →':'See your results →';$('puzzle-done').hidden=false;}
 function openTerminal(index){
  if(activePuzzle!==null)return;
@@ -140,7 +140,7 @@ function renderPredictionReveal(){
  const r=ROUNDS[state.round],p=state.prediction;$('modal-title').textContent=`Results for Task 2: Example ${state.round+1} of ${ROUNDS.length}`;
  $('puzzle').append(element('p','prediction-outcome',p.choice===r.actual?'Your prediction matched the recorded event.':'Your prediction did not match the recorded event.'));
  $('puzzle').append(element('p','history-heading','NEXT RECORDED EVENT'),element('h3','recorded-event',r.next));const results=element('div','reveal-grid prediction-comparison');
- [['Your prediction',r.choices[p.choice]],['Recorded event',r.choices[r.actual]],[r.method+' prediction (saved)',r.choices[r.computer]]].forEach(([label,value])=>{const box=element('div');box.append(element('small','',label),element('strong','',value));results.append(box);});$('puzzle').append(results);
+ [['Your prediction',r.choices[p.choice]],['Recorded event',r.choices[r.actual]],[r.method+' prediction (saved)',r.choices[r.computer]]].forEach(([label,value],index)=>{const correct=index===0?p.choice===r.actual:index===2?r.computer===r.actual:null;const box=element('div',index===0?(correct?'answer-correct':'answer-incorrect'):'');box.append(element('small','',label),element('strong','',value));if(correct!==null)box.append(element('span','result-status '+(correct?'status-correct':'status-incorrect'),correct?'✓ Correct':'× Incorrect'));results.append(box);});$('puzzle').append(results);
  instruction(state.round===0?'One matching event is only a start, so researchers check predictions across many patient journeys.':'A plausible prediction can differ from the event actually recorded.');
  $('puzzle').append(button(state.round<ROUNDS.length-1?`Try example ${state.round+2} of ${ROUNDS.length} →`:'Finish Task 2 →',()=>{
  if(!state.prediction.revealed)return;
@@ -150,7 +150,8 @@ function renderPredictionReveal(){
 }
 function renderStory(){
  $('puzzle').replaceChildren();
- instruction('Choose the text that preserves all three predicted categories, in order, without adding facts. Correct choice: +4; wrong choice: −1.');
+ instruction('Choose the text that preserves all three predicted categories in order');
+ instruction('Correct choice: +4; wrong choice: −1.');
 
  const heading=element('p','history-heading','PREDICTED EVENTS IN ORDER');
  const trail=element('ol','continuation-events');CONTINUATION.events.forEach(label=>trail.append(element('li','',label)));
